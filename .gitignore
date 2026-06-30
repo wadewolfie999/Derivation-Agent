@@ -258,6 +258,12 @@ pythontex-files-*/
 
 # vhistory
 *.hst
+
+## Repository LaTeX factory output
+build/
+/.factory-validation-*/
+
+
 *.ver
 
 # easy-todo

@@ -1,0 +1,32 @@
+\documentclass[11pt,parskip=half]{scrartcl}
+
+\usepackage{iftex}
+\usepackage{mathtools}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\else
+  \usepackage{fontspec}
+  \usepackage[warnings-off={mathtools-overbracket,mathtools-colon}]{unicode-math}
+\fi
+
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
+\addbibresource{references.bib}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\title{LaTeX Factory Smoke Test}
+\author{Derivation Agent Repository}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\input{sections/introduction}
+
+\printbibliography
+\end{document}

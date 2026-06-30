@@ -1,0 +1,18 @@
+# One TeX file per line. scripts/check-latex-env.sh resolves each with kpsewhich.
+scrartcl.cls
+scrreprt.cls
+iftex.sty
+fontspec.sty
+unicode-math.sty
+lmodern.sty
+microtype.sty
+mathtools.sty
+amssymb.sty
+amsthm.sty
+siunitx.sty
+graphicx.sty
+booktabs.sty
+csquotes.sty
+biblatex.sty
+hyperref.sty
+cleveref.sty

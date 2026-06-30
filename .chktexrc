@@ -1,0 +1,6 @@
+# Keep the project lint policy explicit and avoid hidden user-level overrides.
+QuoteStyle = Logical
+TabSize = 2
+
+# These control commands intentionally take no argument.
+Silent { \ifPDFTeX \printbibliography }

@@ -1,0 +1,39 @@
+\documentclass[11pt,oneside,parskip=half]{scrreprt}
+
+\usepackage{iftex}
+\usepackage{mathtools}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+  \usepackage{amssymb}
+\else
+  \usepackage{fontspec}
+  \usepackage[warnings-off={mathtools-overbracket,mathtools-colon}]{unicode-math}
+\fi
+
+\usepackage{microtype}
+\usepackage{amsthm}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
+\addbibresource{references.bib}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\newtheorem{theorem}{Theorem}[chapter]
+
+\title{Physics Report Title}
+\author{Author}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\input{sections/introduction}
+
+\printbibliography
+\end{document}
