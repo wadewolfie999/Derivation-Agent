@@ -2,8 +2,8 @@
 set -euo pipefail
 set -f
 
-script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
-repo_root=$(CDPATH= cd -- "$script_dir/.." && pwd -P)
+script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
+repo_root=$(CDPATH='' cd -- "$script_dir/.." && pwd -P)
 
 usage() {
   printf 'Usage: %s <basic|physics> <relative-destination>\n' "$0" >&2
@@ -38,8 +38,9 @@ for component in "${components[@]}"; do
 done
 
 destination_path="$repo_root/$destination"
-[ ! -e "$destination_path" ] && [ ! -L "$destination_path" ] || \
+if [ -e "$destination_path" ] || [ -L "$destination_path" ]; then
   fail "destination already exists: $destination_path"
+fi
 [ -d "$template_dir" ] || fail "template directory is missing: $template_dir"
 
 mkdir -p -- "$(dirname -- "$destination_path")"

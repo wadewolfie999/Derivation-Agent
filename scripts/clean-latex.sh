@@ -13,7 +13,7 @@ fail() {
 [ "$#" -eq 1 ] || { usage; exit 64; }
 [ -d "$1" ] || fail "report directory does not exist: $1"
 
-report_dir=$(CDPATH= cd -- "$1" && pwd -P)
+report_dir=$(CDPATH='' cd -- "$1" && pwd -P)
 [ "$report_dir" != "/" ] || fail "refusing to use the filesystem root as a report directory"
 [ -f "$report_dir/main.tex" ] || fail "missing report entry point: $report_dir/main.tex"
 

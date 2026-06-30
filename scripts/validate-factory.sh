@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
-repo_root=$(CDPATH= cd -- "$script_dir/.." && pwd -P)
+script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
+repo_root=$(CDPATH='' cd -- "$script_dir/.." && pwd -P)
 temp_rel=".factory-validation-$$"
 temp_root="$repo_root/$temp_rel"
 smoke_rel=examples/smoke-test-report
