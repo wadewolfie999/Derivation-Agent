@@ -1,0 +1,58 @@
+name: LaTeX factory
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install LaTeX and QA dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends \
+            biber chktex latexmk lmodern poppler-utils shellcheck \
+            texlive-bibtex-extra texlive-fonts-recommended \
+            texlive-latex-base texlive-latex-extra texlive-latex-recommended \
+            texlive-luatex texlive-science texlive-xetex
+
+      - name: Validate shell scripts
+        run: |
+          bash -n scripts/*.sh
+          shellcheck -s bash scripts/*.sh
+
+      - name: Validate skill structure
+        run: |
+          for skill in latex-crafter compilation-validator repo-governance; do
+            file=".agents/skills/$skill/SKILL.md"
+            test -f "$file"
+            test "$(sed -n '1p' "$file")" = "---"
+            grep -qx "name: $skill" "$file"
+            grep -q '^description: .' "$file"
+          done
+
+      - name: Validate environment and factory
+        run: |
+          bash scripts/check-latex-env.sh --strict
+          bash scripts/validate-factory.sh
+
+      - name: Build authoritative smoke artifact
+        run: bash scripts/build-report.sh examples/smoke-test-report
+
+      - name: Upload LuaLaTeX smoke PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-test-report-lualatex
+          path: examples/smoke-test-report/build/main.pdf
+          if-no-files-found: error
