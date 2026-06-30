@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -u
 
-script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
-repo_root=$(CDPATH= cd -- "$script_dir/.." && pwd -P)
+script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
+repo_root=$(CDPATH='' cd -- "$script_dir/.." && pwd -P)
 strict=0
 
 usage() {

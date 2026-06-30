@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
-repo_root=$(CDPATH= cd -- "$script_dir/.." && pwd -P)
+script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
+repo_root=$(CDPATH='' cd -- "$script_dir/.." && pwd -P)
 engine=lualatex
 
 usage() {
@@ -31,7 +31,7 @@ esac
 
 report_input=$1
 [ -d "$report_input" ] || fail "report directory does not exist: $report_input"
-report_dir=$(CDPATH= cd -- "$report_input" && pwd -P)
+report_dir=$(CDPATH='' cd -- "$report_input" && pwd -P)
 [ "$report_dir" != "/" ] || fail "refusing to use the filesystem root as a report directory"
 [ -f "$report_dir/main.tex" ] || fail "missing report entry point: $report_dir/main.tex"
 

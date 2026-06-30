@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
-repo_root=$(CDPATH= cd -- "$script_dir/.." && pwd -P)
+script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
+repo_root=$(CDPATH='' cd -- "$script_dir/.." && pwd -P)
 
 usage() {
   printf 'Usage: %s <report-directory>\n' "$0" >&2
@@ -17,7 +17,7 @@ fail() {
 [ -d "$1" ] || fail "report directory does not exist: $1"
 command -v chktex >/dev/null 2>&1 || fail "ChkTeX is unavailable; run scripts/check-latex-env.sh"
 
-report_dir=$(CDPATH= cd -- "$1" && pwd -P)
+report_dir=$(CDPATH='' cd -- "$1" && pwd -P)
 [ -f "$report_dir/main.tex" ] || fail "missing report entry point: $report_dir/main.tex"
 
 printf 'Linting report with ChkTeX: %s\n' "$report_dir"
